@@ -6,7 +6,7 @@ class Dotman:
     def __init__(self):
         self.logger = logger
         self.home_dir = Path.home()
-        self.bin_dir = self.home_dir / "bin"
+        self.bin_dir = self.home_dir / "tools"
         
         self.components = [
             component(self.bin_dir, self.home_dir, self.logger) 
