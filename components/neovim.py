@@ -19,7 +19,7 @@ class NeovimComponent(Component):
         )
         
         target = self.home_dir / ".config" / "nvim"
-        source = Path.cwd() / "nvim"
+        source = self.configs_dir / "nvim"
         if not target.exists():
             target.parent.mkdir(parents=True, exist_ok=True)
             os.symlink(source, target)

@@ -7,9 +7,10 @@ class Dotman:
         self.logger = logger
         self.home_dir = Path.home()
         self.bin_dir = self.home_dir / "tools"
+        self.configs_dir = Path("configs")
         
         self.components = [
-            component(self.bin_dir, self.home_dir, self.logger) 
+            component(self.bin_dir, self.home_dir, self.logger, self.configs_dir) 
             for component in ALL_COMPONENTS
         ]
 
