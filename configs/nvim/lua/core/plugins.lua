@@ -1,8 +1,6 @@
 require("lazy").setup({
-  -- The Package Manager itself
   "folke/lazy.nvim",
 
-  -- File Explorer
   {
     "nvim-tree/nvim-tree.lua",
     config = function()
@@ -13,12 +11,11 @@ require("lazy").setup({
     end
   },
 
-  -- Syntax Highlighting
   {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
     config = function()
-      require('nvim-treesitter.configs').setup {
+      require('nvim-treesitter').setup {
         ensure_installed = {'c', 'cpp', 'lua', 'rust', 'vim', 'python', 'javascript'},
         sync_install = false,
         auto_install = true,
@@ -27,13 +24,9 @@ require("lazy").setup({
     end
   },
 
-  -- Comments
   "tpope/vim-commentary",
-
-  -- Formatting
   "sbdchd/neoformat",
 
-  -- Telescope (Fuzzy Finder)
   {
     "nvim-telescope/telescope.nvim",
     tag = '0.1.4',
@@ -44,7 +37,6 @@ require("lazy").setup({
     end
   },
 
-  -- LSP and Autocompletion
   {
     "neovim/nvim-lspconfig",
     dependencies = {
@@ -54,13 +46,12 @@ require("lazy").setup({
       "saadparwaiz1/cmp_luasnip",
     },
     config = function()
-      -- LSP Config
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
-      local lspconfig = require("lspconfig")
-      local lang_servers = { "pyright", "clangd", "rust_analyzer", "tsserver" }
+      
+      local lang_servers = { "pyright", "clangd", "rust_analyzer", "ts_ls" }
 
       for _, lang_server in ipairs(lang_servers) do
-        lspconfig[lang_server].setup({
+        vim.lsp.config(lang_server, {
           capabilities = capabilities,
           on_attach = function(client, buffno)
             local map_opts = { noremap=true, silent=true, buffer=buffno }
@@ -78,7 +69,6 @@ require("lazy").setup({
         })
       end
 
-      -- CMP Config
       local cmp = require("cmp")
       local luasnip = require("luasnip")
       cmp.setup({
@@ -86,10 +76,6 @@ require("lazy").setup({
         mapping = cmp.mapping.preset.insert({
           ["<C-p>"] = cmp.mapping.select_prev_item(),
           ["<C-n>"] = cmp.mapping.select_next_item(),
-          ["<C-d>"] = cmp.mapping.scroll_docs(-4),
-          ["<C-f>"] = cmp.mapping.scroll_docs(4),
-          ["<C-Space>"] = cmp.mapping.complete(),
-          ["<C-e>"] = cmp.mapping.close(),
           ["<CR>"] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
           ["<Tab>"] = function(fallback)
             if cmp.visible() then cmp.select_next_item() else fallback() end
