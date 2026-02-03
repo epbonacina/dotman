@@ -2,9 +2,11 @@ import subprocess
 from abc import ABC, abstractmethod
 from pathlib import Path
 
+from logger import Logger
+
 
 class Component(ABC):
-    def __init__(self, bin_dir: Path, home_dir: Path, configs_dir: Path, logger):
+    def __init__(self, bin_dir: Path, home_dir: Path, configs_dir: Path, logger: Logger):
         self.bin_dir = bin_dir
         self.home_dir = home_dir
         self.configs_dir = configs_dir

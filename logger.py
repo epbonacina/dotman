@@ -3,7 +3,7 @@ import sys
 from contextlib import contextmanager
 
 
-class _Logger:
+class Logger:
     def __init__(self):
         self.indentation_level = 1
         self.logger = logging.getLogger()
@@ -54,4 +54,4 @@ class _Logger:
         message = f"{'  ' * self.indentation_level}{message}"
         return message
 
-logger = _Logger()
+logger = Logger()
