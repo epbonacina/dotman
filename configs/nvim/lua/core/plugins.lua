@@ -20,10 +20,13 @@ require("lazy").setup({
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
     config = function()
+      -- Use the setup directly from the module
       require('nvim-treesitter').setup({
-        ensure_installed = {'c', 'cpp', 'lua', 'rust', 'vim', 'python', 'javascript'},
+        ensure_installed = { "python", "rust", "lua", "javascript", "bash", "c", "cpp" },
         auto_install = true,
-        highlight = { enable = true },
+        highlight = {
+          enable = true, -- The "Magic" switch for better colors
+        },
       })
     end
   },
@@ -34,7 +37,7 @@ require("lazy").setup({
   -- Fuzzy Finder
   {
     "nvim-telescope/telescope.nvim",
-    branch = 'master', -- Fixed: Use master for Neovim 0.11+ compatibility
+    branch = 'master',
     dependencies = { 'nvim-lua/plenary.nvim' },
     config = function()
       require('telescope').setup({
@@ -49,29 +52,11 @@ require("lazy").setup({
   -- LSP and Autocompletion
   {
     "neovim/nvim-lspconfig",
-    dependencies = {
-      "hrsh7th/nvim-cmp",         
-      "hrsh7th/cmp-nvim-lsp",     
-      "L3MON4D3/LuaSnip",         
-      "saadparwaiz1/cmp_luasnip", 
-    },
     config = function()
-      local capabilities = require("cmp_nvim_lsp").default_capabilities()
-      local servers = { "pyright", "clangd", "rust_analyzer", "ts_ls" }
-      
+      local servers = {"pyright", "rust_analyzer", "clangd", "ts_ls"}
       for _, server in ipairs(servers) do
-        vim.lsp.config(server, { capabilities = capabilities })
+        vim.lsp.enable(server)
       end
-
-      local cmp = require("cmp")
-      local luasnip = require("luasnip")
-
-      cmp.setup({
-        snippet = {
-          expand = function(args) luasnip.lsp_expand(args.body) end,
-        },
-        sources = { { name = "nvim_lsp" } },
-      })
     end
   },
 })
