@@ -19,20 +19,28 @@ class Component(ABC):
     def check_health(self) -> bool: pass
 
     def _run_cmd(self, command: str, user_message: str | None = None) -> bool:
-        """
-        Runs a command directly. If 'sudo' is in the string, 
-        the OS will handle the password prompt.
-        """
         if user_message:
             self.logger.info(user_message)
         
         try:
             self.logger.debug(f"Executing: {command}")
-            # We don't capture output for interactive sudo prompts to work correctly
-            subprocess.run(command, shell=True, check=True)
+            
+            result = subprocess.run(
+                command, 
+                shell=True, 
+                check=True, 
+                capture_output=True, 
+                text=True
+            )
+            
+            if result.stdout:
+                self.logger.debug(f"Output: {result.stdout.strip()}")
             return True
+
         except subprocess.CalledProcessError as e:
             self.logger.error(f"Command failed: {command}")
+            if e.stderr:
+                self.logger.error(f"Error details: {e.stderr.strip()}")
             return False
 
     def __str__(self):

@@ -22,7 +22,7 @@ class NeovimComponent(Component):
         source = self.configs_dir / "nvim"
         if not target.exists():
             target.parent.mkdir(parents=True, exist_ok=True)
-            os.symlink(source, target)
+            os.symlink(source.absolute(), target)
 
     def check_health(self) -> bool:
         # Check version and that the config directory is a valid link
