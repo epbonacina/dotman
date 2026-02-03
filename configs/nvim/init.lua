@@ -1,4 +1,3 @@
--- bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
@@ -12,7 +11,8 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+-- This is the right order
 require('core.settings')
-require('core.keymaps')
 require('core.plugins')
+require('core.keymaps')
 require('themes.default')
