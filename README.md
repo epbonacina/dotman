@@ -4,6 +4,9 @@ Dotman is a simple utility tool used to download, update and check the health of
 The easiest way to install **dotman** is to run the automated installation script. This will clone the repository to `~/.dotman`, set up the necessary permissions and
 add a `dotman` alias to your shell configuration (`.bashrc` or `.zshrc`).
 
+## Requirements
+There are no major requirements for **dotman** to work. You may need a Nerd Font for Neovim to display icons properly on your terminal.
+
 ## Quick installation
 
 Open your terminal and run

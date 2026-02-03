@@ -2,11 +2,28 @@ require("lazy").setup({
   "folke/lazy.nvim",
 
   {
+    'nvim-tree/nvim-web-devicons',
+    lazy = true,
+  },
+
+  {
     "nvim-tree/nvim-tree.lua",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
       vim.g.loaded_netrw = 1
       vim.g.loaded_netrwPlugin = 1
-      require("nvim-tree").setup()
+      require("nvim-tree").setup({
+        renderer = {
+          icons = {
+            show = {
+              file = true,
+              folder = true,
+              folder_arrow = true,
+              git = true,
+            },
+          },
+        },
+      })
       vim.keymap.set('n', '<leader>e', ':NvimTreeFindFileToggle<CR>')
     end
   },
