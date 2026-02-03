@@ -1,3 +1,4 @@
+from .dotman import DotmanComponent
 from .neovim import NeovimComponent
 from .nodejs import NodejsComponent
 from .python import PythonComponent
@@ -15,10 +16,11 @@ __all__ = [
 
 ALL_COMPONENTS = [
     # 'SystemDepsComponent' should always be the first one, because system
-    # dependecies need to be installed first by DotMan.
+    # dependecies need to be installed first.
     SystemDepsComponent,
     RustComponent,
     NodejsComponent,
     PythonComponent,
     NeovimComponent,
+    DotmanComponent,
 ]
