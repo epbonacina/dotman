@@ -28,7 +28,7 @@ else
 fi
 
 # 4. Add the alias if it doesn't exist
-ALIAS_CMD="alias dotman='$INSTALL_DIR/main.py'"
+ALIAS_CMD="alias dotman='python3 $INSTALL_DIR/main.py'"
 
 if grep -q "alias dotman=" "$SHELL_CONFIG"; then
     echo "Alias already exists in $SHELL_CONFIG."
