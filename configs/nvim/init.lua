@@ -15,4 +15,7 @@ vim.opt.rtp:prepend(lazypath)
 require('core.settings')
 require('core.plugins')
 require('core.keymaps')
-require('themes.default')
+
+-- vim.cmd.colorscheme("gruvbox")
+-- vim.cmd.colorscheme("tokyonight")
+vim.cmd.colorscheme("catppuccin")

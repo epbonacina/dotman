@@ -1,4 +1,6 @@
 require("lazy").setup({
+  { import = "themes" }, -- Imports my themes at 'themes.lua'
+
   "folke/lazy.nvim",
 
   -- Icons and Visuals
@@ -18,15 +20,17 @@ require("lazy").setup({
   -- Syntax Highlighting
   {
     "nvim-treesitter/nvim-treesitter",
+    lazy = false, 
     build = ":TSUpdate",
     config = function()
-      -- Use the setup directly from the module
-      require('nvim-treesitter').setup({
-        ensure_installed = { "python", "rust", "lua", "javascript", "bash", "c", "cpp" },
-        auto_install = true,
-        highlight = {
-          enable = true, -- The "Magic" switch for better colors
-        },
+      require('nvim-treesitter').install({ 
+        "python", "rust", "lua", "javascript", "bash", "c", "cpp" 
+      })
+  
+      vim.api.nvim_create_autocmd("FileType", {
+        callback = function()
+          pcall(vim.treesitter.start)
+        end,
       })
     end
   },

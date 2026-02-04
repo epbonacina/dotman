@@ -15,7 +15,9 @@ class SystemDepsComponent(Component):
     "git": "git",
     "libssl-dev": None,
     "ripgrep": "rg",
+    "tree-sitter-cli": "tree-sitter",
     "unzip": "unzip",
+    "xclip": "xclip",
     }
     
     def sync(self):

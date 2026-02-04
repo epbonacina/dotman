@@ -1,7 +1,3 @@
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
-
-
 -- File Explorer
 vim.keymap.set('n', '<leader>e', ':NvimTreeFindFileToggle<CR>')
 

@@ -2,6 +2,9 @@
 --     requires `xclip`, which can be installed via `sudo apt install xclip`
 vim.opt.clipboard = "unnamedplus" 
 
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
+
 vim.opt.autoindent = true
 vim.opt.autoread = true
 vim.opt.wrap = false
