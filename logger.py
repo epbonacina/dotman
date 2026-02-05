@@ -22,7 +22,7 @@ class Logger:
 
     def get_formatter(self) -> logging.Formatter:
         return logging.Formatter(
-            fmt='[%(asctime)s - %(levelname)8s] %(message)s',
+            fmt='[%(asctime)s - %(levelname)s]%(message)s',
             datefmt='%Y-%m-%d %H:%M:%S'
         )
 

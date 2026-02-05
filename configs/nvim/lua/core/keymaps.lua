@@ -23,21 +23,3 @@ vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = 'Go to Definition' })
 vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { desc = 'Go to Implementation' })
 vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, { desc = 'Rename Variable' })
 vim.keymap.set("n", "<leader>d", function() vim.diagnostic.open_float(nil, {focus = false}) end, { desc = 'Line Diagnostics' })
-
--- Autocompletion (CMP) Mappings
--- These only work if nvim-cmp is loaded
--- Autocompletion (CMP) Mappings
-local status_ok, cmp = pcall(require, "cmp")
-if status_ok then
-    cmp.setup({
-      mapping = cmp.mapping.preset.insert({
-        ["<C-p>"] = cmp.mapping.select_prev_item(),
-        ["<C-n>"] = cmp.mapping.select_next_item(),
-        ["<C-d>"] = cmp.mapping.scroll_docs(-4),
-        ["<C-f>"] = cmp.mapping.scroll_docs(4),
-        ["<C-Space>"] = cmp.mapping.complete(),
-        ["<C-e>"] = cmp.mapping.close(),
-        ["<CR>"] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
-      })
-    })
-end
