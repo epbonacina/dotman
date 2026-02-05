@@ -14,6 +14,7 @@ class SystemDepsComponent(Component):
     "curl": "curl",
     "git": "git",
     "libssl-dev": None,
+    "meld": "meld",
     "ripgrep": "rg",
     "tree-sitter-cli": "tree-sitter",
     "unzip": "unzip",

@@ -11,11 +11,15 @@ class NeovimComponent(Component):
     def sync(self):
         self.bin_dir.mkdir(parents=True, exist_ok=True)
         self._run_cmd(
-            f'curl -L https://github.com/neovim/neovim/releases/download/v0.11.6/nvim-linux-x86_64.appimage -o "{self.bin_dir}/nvim"',
+            'curl -L https://github.com/neovim/neovim/releases/download/v0.11.6/nvim-linux-x86_64.appimage -o /tmp/nvim.new',
             "Fetching latest NeoVim...",
         )
         self._run_cmd(
-            f"chmod +x {self.bin_dir}/nvim",
+            "chmod +x /tmp/nvim.new",
+        )
+
+        self._run_cmd(
+            f"mv /tmp/nvim.new {self.bin_dir}/nvim",
         )
         
         target = self.home_dir / ".config" / "nvim"
@@ -25,15 +29,7 @@ class NeovimComponent(Component):
             os.symlink(source.absolute(), target)
 
     def check_health(self) -> bool:
-        # Check version and that the config directory is a valid link
-        neovim_is_ok = self._run_cmd(
+        return self._run_cmd(
             f"{self.bin_dir}/nvim --version",
             "Checking NeoVim's health...",
         )
-        config_directory_is_ok = self._run_cmd(
-            f"{self.bin_dir}/nvim --version",
-            "Checking configuration files...",
-        )
-        if neovim_is_ok and config_directory_is_ok:
-            return True
-        return False
