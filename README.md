@@ -5,7 +5,7 @@ The easiest way to install **dotman** is to run the automated installation scrip
 add a `dotman` alias to your shell configuration (`.bashrc` or `.zshrc`).
 
 ## Requirements
-There are no major requirements for **dotman** to work besides Python 3. You may need a Nerd Font for Neovim to display icons properly on your terminal.
+There are no major requirements for **dotman** to work besides Python 3 and a Debian based Linux distro. You may need a Nerd Font for Neovim to display icons properly on your terminal.
 
 ## Quick installation
 
