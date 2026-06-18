@@ -17,6 +17,11 @@ class NodejsComponent(Component):
             "Ensuring Node LTS is active...",
         )
 
+        self._run_cmd(
+            "bash -c 'source $HOME/.nvm/nvm.sh && nvm install --lts'",
+            "Ensuring Node LTS is active...",
+        )
+
     def check_health(self) -> bool:
         self.logger.info(f"Checking NodeJS's health...")
         cmd = "bash -c 'source $HOME/.nvm/nvm.sh && node --version'"

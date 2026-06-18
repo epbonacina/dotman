@@ -16,7 +16,6 @@ class SystemDepsComponent(Component):
     "libssl-dev": None,
     "meld": "meld",
     "ripgrep": "rg",
-    "tree-sitter-cli": "tree-sitter",
     "unzip": "unzip",
     "xclip": "xclip",
     }

@@ -17,6 +17,11 @@ class RustComponent(Component):
                 "rustup component add rust-analyzer",
                 "Installing rust-analyzer...",
             )
+
+            self._run_cmd(
+                "cargo install tree-sitter-cli --locked",
+                "Installing tree-sitter-cli...",
+            )
         else:
             self._run_cmd(
                 "rustup update",

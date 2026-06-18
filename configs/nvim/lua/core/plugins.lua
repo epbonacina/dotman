@@ -24,7 +24,7 @@ require("lazy").setup({
     build = ":TSUpdate",
     config = function()
       require('nvim-treesitter').install({ 
-        "python", "rust", "lua", "javascript", "bash", "c", "cpp" 
+        "python", "rust", "lua", "javascript", "bash", "c", "cpp", "svelte", 
       })
   
       vim.api.nvim_create_autocmd("FileType", {
@@ -57,7 +57,7 @@ require("lazy").setup({
   {
     "neovim/nvim-lspconfig",
     config = function()
-      local servers = {"pyright", "rust_analyzer", "clangd", "ts_ls"}
+      local servers = {"pyright", "rust_analyzer", "clangd", "ts_ls", "svelte"}
       for _, server in ipairs(servers) do
         vim.lsp.enable(server)
       end
